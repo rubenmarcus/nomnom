@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOMNOM game</title>
+  </head>
+  <body
+    style="
+      background-color: #a67e63;
+      display: flex;
+      width: 100vw;
+      height: 300px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap:wrap;
+    "
+  >
+    <img
+      id="nomnomImage"
+      src="nomnom.png"
+      onmousedown="changeToGif()"
+      style="cursor: pointer; width: 500px; height: 500px"
+    />
+    <audio id="nomnomAudio" src="nomnom.mp3"></audio>
+    <div id="counter" style="width:100vw;font-size:40px;text-align: center;font-family: Arial, Helvetica, sans-serif;">0</div>
+
+    <script>
+      let timeoutId;
+      let clickCounter = 0;
+
+      function changeToGif() {
+        const img = document.getElementById("nomnomImage");
+        const audio = document.getElementById("nomnomAudio");
+        const counter = document.getElementById("counter");
+
+        img.src = "nomnom.gif";
+        audio.currentTime = 0; // Reset audio to start
+        audio.play();
+
+        clickCounter++;
+        counter.textContent = clickCounter;
+
+        timeoutId = setTimeout(changeToPng, 1000); // 5 minutes = 300,000 milliseconds
+      }
+
+      function changeToPng() {
+        const img = document.getElementById("nomnomImage");
+        img.src = "nomnom.png";
+      }
+    </script>
+  </body>
+</html>
